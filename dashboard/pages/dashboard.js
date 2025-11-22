@@ -35,10 +35,8 @@ export async function getServerSideProps(context) {
   });
   const guilds = res.ok ? await res.json() : [];
   
-  // For debugging: Show all guilds where user has manage permissions
-  const filteredGuilds = guilds.filter(g => 
-    (g.permissions & 0x20) === 0x20 // Manage Server permission
-  );
+  // For debugging: Show ALL guilds (no permission filter)
+  const filteredGuilds = guilds;
   
   console.log('User guilds with manage permissions:', filteredGuilds.length);
   console.log('Bot token available:', !!process.env.DISCORD_TOKEN);
