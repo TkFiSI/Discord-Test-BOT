@@ -26,6 +26,7 @@ export async function getServerSideProps(context) {
   if (!session) {
     return { redirect: { destination: '/', permanent: false } };
   }
+  
   // Fetch Discord guilds using the access token from NextAuth session
   const res = await fetch('https://discord.com/api/users/@me/guilds', {
     headers: {
@@ -33,6 +34,20 @@ export async function getServerSideProps(context) {
     }
   });
   const guilds = res.ok ? await res.json() : [];
-  // Optional: Filter nur Guilds, in denen der Bot ist – später mit Bot-API querchecken
-  return { props: { guilds } };
+  
+  // Check which guilds have the bot (using bot token)
+  const botGuildsRes = await fetch('https://discord.com/api/users/@me/guilds', {
+    headers: {
+      'Authorization': `Bot ${process.env.DISCORD_TOKEN}`
+    }
+  });
+  const botGuilds = botGuildsRes.ok ? await botGuildsRes.json() : [];
+  
+  // Filter to only show guilds where user has manage permissions AND bot is present
+  const filteredGuilds = guilds.filter(g => 
+    (g.permissions & 0x20) === 0x20 && // Manage Server permission
+    botGuilds.some(bg => bg.id === g.id)
+  );
+  
+  return { props: { guilds: filteredGuilds } };
 }

@@ -1,5 +1,6 @@
 ﻿import 'dotenv/config';
 import { Client, GatewayIntentBits, Partials, Events, PermissionsBitField } from 'discord.js';
+import { getLogChannel } from './database.js';
 
 const client = new Client({
   intents: [
@@ -13,12 +14,6 @@ const client = new Client({
 client.once(Events.ClientReady, c => {
   console.log(`Logged in as ${c.user.tag}`);
 });
-
-function getLogChannel(guild) {
-  const id = process.env.LOG_CHANNEL_ID;
-  if (!id) return null;
-  return guild.channels.cache.get(id) || null;
-}
 
 client.on(Events.InteractionCreate, async (interaction) => {
   try {
@@ -79,7 +74,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       const ms = Math.max(60_000, minutes * 60_000);
       await member.timeout(ms, reason);
       await interaction.reply({ content: `${member.user.tag} für ${minutes} Minuten getimeoutet. Grund: ${reason}` });
-      const log = getLogChannel(interaction.guild);
+      const log = await getLogChannel(interaction.guild);
       log?.send(`⏳ Timeout: ${member.user.tag} (${member.id}) für ${minutes}m durch ${interaction.user.tag}. Grund: ${reason}`);
       return;
     }
@@ -94,7 +89,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       const member = await interaction.guild.members.fetch(user.id);
       await member.kick(reason);
       await interaction.reply({ content: `${member.user.tag} wurde gekickt. Grund: ${reason}` });
-      const log = getLogChannel(interaction.guild);
+      const log = await getLogChannel(interaction.guild);
       log?.send(`👢 Kick: ${member.user.tag} (${member.id}) durch ${interaction.user.tag}. Grund: ${reason}`);
       return;
     }
@@ -108,7 +103,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       const reason = interaction.options.getString('reason') ?? 'Keine Angabe';
       await interaction.guild.members.ban(user.id, { reason });
       await interaction.reply({ content: `${user.tag} wurde gebannt. Grund: ${reason}` });
-      const log = getLogChannel(interaction.guild);
+      const log = await getLogChannel(interaction.guild);
       log?.send(`🔨 Ban: ${user.tag} (${user.id}) durch ${interaction.user.tag}. Grund: ${reason}`);
       return;
     }
@@ -122,7 +117,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       const reason = interaction.options.getString('reason') ?? 'Keine Angabe';
       await interaction.guild.bans.remove(userId, reason).catch(() => {});
       await interaction.reply({ content: `User ${userId} wurde entbannt. Grund: ${reason}` });
-      const log = getLogChannel(interaction.guild);
+      const log = await getLogChannel(interaction.guild);
       log?.send(`♻️ Unban: ${userId} durch ${interaction.user.tag}. Grund: ${reason}`);
       return;
     }
@@ -143,7 +138,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
       const delCount = toDelete.length;
       await channel.bulkDelete(toDelete, true);
       await interaction.reply({ content: `${delCount} Nachricht(en) gelöscht.${user ? ` (nur von ${user.tag})` : ''}` , ephemeral: true });
-      const log = getLogChannel(interaction.guild);
+      const log = await getLogChannel(interaction.guild);
       log?.send(`🧹 Clear: ${delCount} Nachrichten in #${channel.name} durch ${interaction.user.tag}${user ? ` (nur von ${user.tag})` : ''}`);
       return;
     }
