@@ -223,63 +223,62 @@ export default function GuildSettings() {
               <div className="space-y-6">
                 <h2 className="text-2xl font-bold text-white mb-6">Server-Übersicht</h2>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="card">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-blue-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                        <span className="text-2xl">📊</span>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="card p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-blue-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                        <span className="text-lg">📊</span>
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-white">Status</h3>
-                        <p className="text-gray-400">Bot ist online</p>
+                        <h3 className="text-sm font-semibold text-white">Status</h3>
+                        <p className="text-gray-400 text-xs">Bot online</p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="card">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                        <span className="text-2xl">✅</span>
+                  <div className="card p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                        <span className="text-lg">✅</span>
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-white">Module</h3>
-                        <p className="text-gray-400">8 von 8 aktiv</p>
+                        <h3 className="text-sm font-semibold text-white">Module</h3>
+                        <p className="text-gray-400 text-xs">8 aktiv</p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="card">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-purple-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                        <span className="text-2xl">🎯</span>
+                  <div className="card p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-purple-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                        <span className="text-lg">🎯</span>
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-white">Performance</h3>
-                        <p className="text-gray-400">Optimal</p>
+                        <h3 className="text-sm font-semibold text-white">Performance</h3>
+                        <p className="text-gray-400 text-xs">Optimal</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="card">
-                  <h3 className="text-xl font-semibold text-white mb-4">Schnell-Aktionen</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <button className="btn-secondary">Bot neu starten</button>
-                    <button className="btn-secondary">Cache leeren</button>
-                    <button className="btn-secondary">Statistiken exportieren</button>
-                    <button className="btn-secondary">Backup erstellen</button>
+                <div className="card p-4">
+                  <h3 className="text-lg font-semibold text-white mb-3">Schnell-Aktionen</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    <button className="btn-secondary py-2 px-3 text-sm">Bot neustarten</button>
+                    <button className="btn-secondary py-2 px-3 text-sm">Cache leeren</button>
+                    <button className="btn-secondary py-2 px-3 text-sm">Export</button>
+                    <button className="btn-secondary py-2 px-3 text-sm">Backup</button>
                   </div>
                 </div>
               </div>
             )}
 
             {activeTab === 'logging' && (
-              <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-white mb-6">Logging-Einstellungen</h2>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold text-white mb-4">Logging</h2>
                 
-                <div className="card">
-                  <h3 className="text-lg font-semibold text-white mb-4">Log-Channel</h3>
-                  <div className="space-y-4">
+                <div className="card p-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
                         Log Channel ID
@@ -288,36 +287,26 @@ export default function GuildSettings() {
                         type="text"
                         value={settings.logChannelId}
                         onChange={(e) => setSettings({ ...settings, logChannelId: e.target.value })}
-                        className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500"
+                        className="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 text-sm"
                         placeholder="1397869920401883188"
                       />
                     </div>
-                  </div>
-                </div>
 
-                <div className="card">
-                  <h3 className="text-lg font-semibold text-white mb-4">Log-Typen</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="text-white font-medium">Mod-Log</h4>
-                        <p className="text-gray-400 text-sm">Aktionen von Moderatoren protokollieren</p>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-white text-sm">Mod-Log</span>
+                        <button
+                          onClick={() => setSettings({ ...settings, modLogEnabled: !settings.modLogEnabled })}
+                          className={`toggle ${settings.modLogEnabled ? 'active' : ''}`}
+                        />
                       </div>
-                      <button
-                        onClick={() => setSettings({ ...settings, modLogEnabled: !settings.modLogEnabled })}
-                        className={`toggle ${settings.modLogEnabled ? 'active' : ''}`}
-                      />
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="text-white font-medium">Audit-Log</h4>
-                        <p className="text-gray-400 text-sm">Server-Änderungen protokollieren</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-white text-sm">Audit-Log</span>
+                        <button
+                          onClick={() => setSettings({ ...settings, auditLogEnabled: !settings.auditLogEnabled })}
+                          className={`toggle ${settings.auditLogEnabled ? 'active' : ''}`}
+                        />
                       </div>
-                      <button
-                        onClick={() => setSettings({ ...settings, auditLogEnabled: !settings.auditLogEnabled })}
-                        className={`toggle ${settings.auditLogEnabled ? 'active' : ''}`}
-                      />
                     </div>
                   </div>
                 </div>
@@ -325,34 +314,45 @@ export default function GuildSettings() {
             )}
 
             {activeTab === 'welcome' && (
-              <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-white mb-6">Welcome System</h2>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold text-white mb-4">Welcome System</h2>
                 
-                <div className="card">
-                  <h3 className="text-lg font-semibold text-white mb-4">Allgemein</h3>
+                <div className="card p-4">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="text-white font-medium">Welcome System</h4>
-                        <p className="text-gray-400 text-sm">Neue Mitglieder begrüßen</p>
-                      </div>
+                      <span className="text-white text-sm">Welcome System</span>
                       <button
                         onClick={() => setSettings({ ...settings, welcomeEnabled: !settings.welcomeEnabled })}
                         className={`toggle ${settings.welcomeEnabled ? 'active' : ''}`}
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Welcome Channel ID
-                      </label>
-                      <input
-                        type="text"
-                        value={settings.welcomeChannelId}
-                        onChange={(e) => setSettings({ ...settings, welcomeChannelId: e.target.value })}
-                        className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500"
-                        placeholder="#welcome"
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                          Welcome Channel ID
+                        </label>
+                        <input
+                          type="text"
+                          value={settings.welcomeChannelId}
+                          onChange={(e) => setSettings({ ...settings, welcomeChannelId: e.target.value })}
+                          className="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 text-sm"
+                          placeholder="#welcome"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                          Auto-Roles
+                        </label>
+                        <input
+                          type="text"
+                          value={settings.autoRoles.join(', ')}
+                          onChange={(e) => setSettings({ ...settings, autoRoles: e.target.value.split(',').map(r => r.trim()).filter(r => r) })}
+                          className="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 text-sm"
+                          placeholder="123456789, 987654321"
+                        />
+                      </div>
                     </div>
 
                     <div>
@@ -362,32 +362,11 @@ export default function GuildSettings() {
                       <textarea
                         value={settings.welcomeMessage}
                         onChange={(e) => setSettings({ ...settings, welcomeMessage: e.target.value })}
-                        className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 h-32"
+                        className="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 h-20 text-sm"
                         placeholder="Willkommen {user} auf dem Server! 🎉"
                       />
-                      <p className="text-gray-400 text-sm mt-2">
+                      <p className="text-gray-400 text-xs mt-1">
                         Variablen: {'{user}'}, {'{server}'}, {'{count}'}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="card">
-                  <h3 className="text-lg font-semibold text-white mb-4">Auto-Roles</h3>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Auto-Roles (Komma-getrennt)
-                      </label>
-                      <input
-                        type="text"
-                        value={settings.autoRoles.join(', ')}
-                        onChange={(e) => setSettings({ ...settings, autoRoles: e.target.value.split(',').map(r => r.trim()).filter(r => r) })}
-                        className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500"
-                        placeholder="123456789, 987654321"
-                      />
-                      <p className="text-gray-400 text-sm mt-2">
-                        Diese Rollen werden neuen Mitgliedern automatisch zugewiesen
                       </p>
                     </div>
                   </div>
@@ -396,74 +375,24 @@ export default function GuildSettings() {
             )}
 
             {activeTab === 'moderation' && (
-              <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-white mb-6">Auto-Moderation</h2>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold text-white mb-4">Auto-Moderation</h2>
                 
-                <div className="card">
-                  <h3 className="text-lg font-semibold text-white mb-4">Spam-Schutz</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="text-white font-medium">Anti-Spam</h4>
-                        <p className="text-gray-400 text-sm">Automatische Spam-Erkennung</p>
-                      </div>
-                      <button
-                        onClick={() => setSettings({ ...settings, antiSpamEnabled: !settings.antiSpamEnabled })}
-                        className={`toggle ${settings.antiSpamEnabled ? 'active' : ''}`}
-                      />
-                    </div>
-
+                <div className="card p-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Empfindlichkeit
+                        Anti-Spam Empfindlichkeit
                       </label>
                       <select
                         value={settings.antiSpamSensitivity}
                         onChange={(e) => setSettings({ ...settings, antiSpamSensitivity: e.target.value })}
-                        className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500"
+                        className="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 text-sm"
                       >
                         <option value="low">Niedrig</option>
                         <option value="medium">Mittel</option>
                         <option value="high">Hoch</option>
                       </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="card">
-                  <h3 className="text-lg font-semibold text-white mb-4">Content Filter</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="text-white font-medium">Anti-Invite</h4>
-                        <p className="text-gray-400 text-sm">Discord-Invites blockieren</p>
-                      </div>
-                      <button
-                        onClick={() => setSettings({ ...settings, antiInviteEnabled: !settings.antiInviteEnabled })}
-                        className={`toggle ${settings.antiInviteEnabled ? 'active' : ''}`}
-                      />
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="text-white font-medium">Anti-Link</h4>
-                        <p className="text-gray-400 text-sm">Externe Links blockieren</p>
-                      </div>
-                      <button
-                        onClick={() => setSettings({ ...settings, antiLinkEnabled: !settings.antiLinkEnabled })}
-                        className={`toggle ${settings.antiLinkEnabled ? 'active' : ''}`}
-                      />
-                    </div>
-
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="text-white font-medium">Anti-Caps</h4>
-                        <p className="text-gray-400 text-sm">Großschreibung limitieren</p>
-                      </div>
-                      <button
-                        onClick={() => setSettings({ ...settings, antiCapsEnabled: !settings.antiCapsEnabled })}
-                        className={`toggle ${settings.antiCapsEnabled ? 'active' : ''}`}
-                      />
                     </div>
 
                     <div>
@@ -476,7 +405,38 @@ export default function GuildSettings() {
                         max="100"
                         value={settings.capsThreshold}
                         onChange={(e) => setSettings({ ...settings, capsThreshold: parseInt(e.target.value) })}
-                        className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500"
+                        className="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-white text-xs">Anti-Spam</span>
+                      <button
+                        onClick={() => setSettings({ ...settings, antiSpamEnabled: !settings.antiSpamEnabled })}
+                        className={`toggle ${settings.antiSpamEnabled ? 'active' : ''}`}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-white text-xs">Anti-Invite</span>
+                      <button
+                        onClick={() => setSettings({ ...settings, antiInviteEnabled: !settings.antiInviteEnabled })}
+                        className={`toggle ${settings.antiInviteEnabled ? 'active' : ''}`}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-white text-xs">Anti-Link</span>
+                      <button
+                        onClick={() => setSettings({ ...settings, antiLinkEnabled: !settings.antiLinkEnabled })}
+                        className={`toggle ${settings.antiLinkEnabled ? 'active' : ''}`}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-white text-xs">Anti-Caps</span>
+                      <button
+                        onClick={() => setSettings({ ...settings, antiCapsEnabled: !settings.antiCapsEnabled })}
+                        className={`toggle ${settings.antiCapsEnabled ? 'active' : ''}`}
                       />
                     </div>
                   </div>
@@ -485,49 +445,47 @@ export default function GuildSettings() {
             )}
 
             {activeTab === 'levels' && (
-              <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-white mb-6">Level System</h2>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold text-white mb-4">Level System</h2>
                 
-                <div className="card">
-                  <h3 className="text-lg font-semibold text-white mb-4">Allgemein</h3>
+                <div className="card p-4">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="text-white font-medium">Level System</h4>
-                        <p className="text-gray-400 text-sm">XP für Nachrichten vergeben</p>
-                      </div>
+                      <span className="text-white text-sm">Level System</span>
                       <button
                         onClick={() => setSettings({ ...settings, levelSystemEnabled: !settings.levelSystemEnabled })}
                         className={`toggle ${settings.levelSystemEnabled ? 'active' : ''}`}
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Level Up Channel ID
-                      </label>
-                      <input
-                        type="text"
-                        value={settings.levelUpChannelId}
-                        onChange={(e) => setSettings({ ...settings, levelUpChannelId: e.target.value })}
-                        className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500"
-                        placeholder="#level-ups"
-                      />
-                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                          Level Up Channel ID
+                        </label>
+                        <input
+                          type="text"
+                          value={settings.levelUpChannelId}
+                          onChange={(e) => setSettings({ ...settings, levelUpChannelId: e.target.value })}
+                          className="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 text-sm"
+                          placeholder="#level-ups"
+                        />
+                      </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Level Up Message
-                      </label>
-                      <textarea
-                        value={settings.levelUpMessage}
-                        onChange={(e) => setSettings({ ...settings, levelUpMessage: e.target.value })}
-                        className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 h-32"
-                        placeholder="{user} hat Level {level} erreicht! 🎊"
-                      />
-                      <p className="text-gray-400 text-sm mt-2">
-                        Variablen: {'{user}'}, {'{level}'}, {'{xp}'}
-                      </p>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                          Level Up Message
+                        </label>
+                        <textarea
+                          value={settings.levelUpMessage}
+                          onChange={(e) => setSettings({ ...settings, levelUpMessage: e.target.value })}
+                          className="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 h-20 text-sm"
+                          placeholder="{user} hat Level {level} erreicht! 🎊"
+                        />
+                        <p className="text-gray-400 text-xs mt-1">
+                          Variablen: {'{user}'}, {'{level}'}, {'{xp}'}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -535,61 +493,51 @@ export default function GuildSettings() {
             )}
 
             {activeTab === 'commands' && (
-              <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-white mb-6">Custom Commands</h2>
-                
-                <div className="card">
-                  <h3 className="text-lg font-semibold text-white mb-4">Commands verwalten</h3>
-                  <p className="text-gray-400 mb-4">Bald verfügbar...</p>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold text-white mb-4">Custom Commands</h2>
+                <div className="card p-4">
+                  <p className="text-gray-400 text-sm">Bald verfügbar...</p>
                 </div>
               </div>
             )}
 
             {activeTab === 'reaction' && (
-              <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-white mb-6">Reaction Roles</h2>
-                
-                <div className="card">
-                  <h3 className="text-lg font-semibold text-white mb-4">Reaction Roles verwalten</h3>
-                  <p className="text-gray-400 mb-4">Bald verfügbar...</p>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold text-white mb-4">Reaction Roles</h2>
+                <div className="card p-4">
+                  <p className="text-gray-400 text-sm">Bald verfügbar...</p>
                 </div>
               </div>
             )}
 
             {activeTab === 'giveaway' && (
-              <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-white mb-6">Giveaways</h2>
-                
-                <div className="card">
-                  <h3 className="text-lg font-semibold text-white mb-4">Giveaway Channel</h3>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Giveaway Channel ID
-                      </label>
-                      <input
-                        type="text"
-                        value={settings.giveawayChannelId}
-                        onChange={(e) => setSettings({ ...settings, giveawayChannelId: e.target.value })}
-                        className="w-full bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500"
-                        placeholder="#giveaways"
-                      />
-                    </div>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold text-white mb-4">Giveaways</h2>
+                <div className="card p-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Giveaway Channel ID
+                    </label>
+                    <input
+                      type="text"
+                      value={settings.giveawayChannelId}
+                      onChange={(e) => setSettings({ ...settings, giveawayChannelId: e.target.value })}
+                      className="w-full bg-gray-700 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500 text-sm"
+                      placeholder="#giveaways"
+                    />
                   </div>
                 </div>
               </div>
             )}
 
             {activeTab === 'music' && (
-              <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-white mb-6">Music Settings</h2>
-                
-                <div className="card">
-                  <h3 className="text-lg font-semibold text-white mb-4">Music Einstellungen</h3>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold text-white mb-4">Music Settings</h2>
+                <div className="card p-4">
                   <div className="space-y-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Standard Lautstärke
+                        Standard Lautstärke: {settings.musicDefaultVolume}%
                       </label>
                       <input
                         type="range"
@@ -599,14 +547,10 @@ export default function GuildSettings() {
                         onChange={(e) => setSettings({ ...settings, musicDefaultVolume: parseInt(e.target.value) })}
                         className="w-full"
                       />
-                      <div className="text-center text-white">{settings.musicDefaultVolume}%</div>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="text-white font-medium">Auto Leave</h4>
-                        <p className="text-gray-400 text-sm">Kanal bei Inaktivität verlassen</p>
-                      </div>
+                      <span className="text-white text-sm">Auto Leave</span>
                       <button
                         onClick={() => setSettings({ ...settings, musicAutoLeave: !settings.musicAutoLeave })}
                         className={`toggle ${settings.musicAutoLeave ? 'active' : ''}`}
