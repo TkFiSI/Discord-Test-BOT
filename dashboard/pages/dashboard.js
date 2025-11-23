@@ -79,12 +79,12 @@ export default function Dashboard({ guilds }) {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3">
+          <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2">
             {filteredGuilds?.map((guild) => (
-              <div key={guild.id} className="card hover:scale-105 transition-all duration-300 p-3">
+              <div key={guild.id} className="card hover:scale-105 transition-all duration-300 p-2">
                 <div className="flex flex-col items-center text-center">
                   {/* Server Icon */}
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-2 shadow-lg">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-1 shadow-lg">
                     {guild.icon ? (
                       <img 
                         src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
