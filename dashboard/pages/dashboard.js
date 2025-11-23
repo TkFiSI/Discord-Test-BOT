@@ -79,12 +79,12 @@ export default function Dashboard({ guilds }) {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
             {filteredGuilds?.map((guild) => (
               <div key={guild.id} className="card hover:scale-105 transition-all duration-300">
                 <div className="flex flex-col items-center text-center">
                   {/* Server Icon */}
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-4 shadow-lg">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-3 shadow-lg">
                     {guild.icon ? (
                       <img 
                         src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
@@ -92,24 +92,24 @@ export default function Dashboard({ guilds }) {
                         className="w-full h-full rounded-full"
                       />
                     ) : (
-                      <span className="text-2xl font-bold text-white">
+                      <span className="text-lg font-bold text-white">
                         {guild.name.split(' ').map(word => word[0]).join('').slice(0, 2).toUpperCase()}
                       </span>
                     )}
                   </div>
 
                   {/* Server Info */}
-                  <h3 className="text-lg font-semibold text-white mb-1 truncate w-full">
+                  <h3 className="text-sm font-semibold text-white mb-1 truncate w-full">
                     {guild.name}
                   </h3>
-                  <p className="text-gray-400 text-sm mb-4">
+                  <p className="text-gray-400 text-xs mb-2">
                     ID: {guild.id}
                   </p>
 
                   {/* Member Count (if available) */}
                   {guild.memberCount && (
-                    <div className="flex items-center gap-2 text-gray-400 text-sm mb-4">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="flex items-center gap-2 text-gray-400 text-xs mb-2">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                       </svg>
                       {guild.memberCount.toLocaleString()} Mitglieder
@@ -119,9 +119,9 @@ export default function Dashboard({ guilds }) {
                   {/* Action Button */}
                   <a 
                     href={`/guild/${guild.id}`}
-                    className="btn-primary w-full flex items-center justify-center gap-2"
+                    className="btn-primary w-full flex items-center justify-center gap-1 py-2 px-2 text-xs"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                     </svg>
