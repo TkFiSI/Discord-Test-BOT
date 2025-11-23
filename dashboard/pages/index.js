@@ -3,16 +3,7 @@ import { useState } from 'react';
 
 export default function Home() {
   const { data: session, status } = useSession();
-  const loading = status === 'loading';
   const [isHovered, setIsHovered] = useState(false);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
-        <div className="text-white text-sm">Laden...</div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black relative overflow-hidden">
