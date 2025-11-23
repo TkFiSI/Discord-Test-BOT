@@ -84,7 +84,7 @@ export default function Dashboard({ guilds }) {
               <div key={guild.id} className="card hover:scale-105 transition-all duration-300 p-3">
                 <div className="flex flex-col items-center text-center">
                   {/* Server Icon */}
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-2 shadow-lg">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-2 shadow-lg">
                     {guild.icon ? (
                       <img 
                         src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
@@ -92,7 +92,7 @@ export default function Dashboard({ guilds }) {
                         className="w-full h-full rounded-full"
                       />
                     ) : (
-                      <span className="text-sm font-bold text-white">
+                      <span className="text-xs font-bold text-white">
                         {guild.name.split(' ').map(word => word[0]).join('').slice(0, 2).toUpperCase()}
                       </span>
                     )}
